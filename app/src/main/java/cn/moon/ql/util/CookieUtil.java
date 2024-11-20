@@ -53,7 +53,7 @@ public class CookieUtil {
             list.add(key + "=" + value);
         }
         String joinedWithoutLast = TextUtils.join("; ");
-        return joinedWithoutLast + ";"
+        return joinedWithoutLast + ";";
     }
 
 
