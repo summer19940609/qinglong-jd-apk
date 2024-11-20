@@ -50,10 +50,22 @@ public class CookieUtil {
         for (Map.Entry<String, String> e : cookieMap.entrySet()) {
             String key = e.getKey();
             String value = e.getValue();
-
-            list.add(key+"="+value);
+            list.add(key + "=" + value);
         }
-        return TextUtils.join("; ", list);
+
+        // 先使用TextUtils.join拼接除最后一个元素外的所有元素，分隔符为"; "
+        String joinedWithoutLast = TextUtils.join("; ", list.subList(0, list.size() - 1));
+
+        // 获取最后一个元素并添加分号
+        String lastElementWithSemicolon = list.get(list.size() - 1) + ";";
+
+        // 如果前面拼接的字符串为空，直接返回最后一个元素加了分号的结果
+        if (joinedWithoutLast.isEmpty()) {
+            return lastElementWithSemicolon;
+        }
+
+        // 否则将前面拼接的部分和最后一个元素加了分号的部分拼接起来返回
+        return joinedWithoutLast + " " + lastElementWithSemicolon;
     }
 
 
